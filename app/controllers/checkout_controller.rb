@@ -9,11 +9,11 @@ class CheckoutController < ApplicationController
 		# Config
 		merchant_id = ''
 		api_token = ''
-		hash_password = ''
+		hash_secret = ''
 
 		gateway = ActiveMerchant::Billing::MondidoGateway.new(
 		            :login => "#{merchant_id}:#{api_token}",
-		            :password => hash_password)
+		            :password => hash_secret)
 
 		# ActiveMerchant accepts all amounts as Integer values in cents
 		amount = 1000  # $10.00
@@ -29,6 +29,7 @@ class CheckoutController < ApplicationController
 
 		options = {
 			:order_id => 1234
+			# One successful submission per order_id is allowed
 		}
 
 		# Validating the card automatically detects the card type
