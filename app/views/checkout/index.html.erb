@@ -1,0 +1,10 @@
+<h1>Checkout</h1>
+
+<hr/>
+
+<p>T-Shirt for $ 1.00</p>
+
+<form action="/charge" method="post">
+	<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+	<input type="submit" value="Charge my Credit Card" />
+</form>
