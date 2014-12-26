@@ -7,13 +7,11 @@ class CheckoutController < ApplicationController
 		ActiveMerchant::Billing::Base.mode = :test
 
 		# Config
-		merchant_id = ''
-		api_token = ''
-		hash_secret = ''
-
 		gateway = ActiveMerchant::Billing::MondidoGateway.new(
-		            :login => "#{merchant_id}:#{api_token}",
-		            :password => hash_secret)
+            :merchant_id => "", 	# Int or String - doesn't matter
+            :api_token => "", 		# String
+            :hash_secret => "" 		# String
+		)
 
 		# ActiveMerchant accepts all amounts as Integer values in cents
 		amount = 1000  # $10.00
@@ -28,15 +26,15 @@ class CheckoutController < ApplicationController
 		                :verification_value => '200')
 
 		options = {
-			:order_id => 1234
 			# One successful submission per order_id is allowed
+			# Need to change after successful purchase
+			:order_id => 1234
 		}
 
 		# Validating the card automatically detects the card type
 
 		if credit_card.validate.empty?
 		  # Capture $1 from the credit card
-		  #byebug
 		  response = gateway.purchase(amount, credit_card, options)
 
 		  if response.success?
