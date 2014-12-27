@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/andersonDadario/active_merchant.git
-  revision: 9153dac85b1069206b8769ef64e59af2d0a23f1a
+  revision: 27c941ef93a6d70b6d8c3f9142f1917d5365a68c
   specs:
     activemerchant (1.45.0)
       active_utils (~> 2.2.0)
